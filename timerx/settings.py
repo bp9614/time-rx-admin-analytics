@@ -15,7 +15,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'w5k@r!hbgk0n@w5ov3-jjs7&@@$m6tsa0f5l(4(vlerq=@-1-)'
-ACCESS_KEY_LOC = 'C:/Users/phamb1/accessKeys.csv' # Replace with location of admin level access keys
+ACCESS_KEY_LOC = '.keys/accessKeys.csv'
+MONGODB_USER_PASSWORD_LOC = '.keys/for_mongodb.csv'
 
 DEBUG = True
 
@@ -28,7 +29,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,10 +74,8 @@ WSGI_APPLICATION = 'timerx.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_engine',
-        'NAME': os.path.join(BASE_DIR, 'db.mongo'),
-        'HOST': 'localhost',
-        'PORT': '27107',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
