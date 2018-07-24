@@ -1,8 +1,12 @@
 import axios from 'axios';
 
-export const FETCH_JWT = 'FETCH_JWT';
+export const FETCH_JWT_SUCCESS = 'FETCH_JWT_SUCCESS';
+export const FETCH_JWT_FAILURE = 'FETCH_JWT_FAILURE';
 export const LOGOUT = 'LOGOUT';
-export const REFRESH_JWT = 'REFRESH_JWT';
+export const REFRESH_JWT_SUCCESS = 'REFRESH_JWT_SUCCESS';
+export const REFRESH_JWT_FAILURE = 'REFRESH_JWT_FAILURE';
+export const VERIFY_JWT_SUCCESS = 'VERIFY_JWT_SUCCESS';
+export const VERIFY_JWT_FAILURE = 'VERIFY_JWT_FAILURE';
 
 const DJANGO_URL = 'http://localhost:8000/';
 
@@ -12,20 +16,20 @@ export function fetchJWT(username, password) {
             username,
             password,
         }
-    }).then(response => {
-        if (response.status === 200) {
-            sessionStorage.setItem('admin_analytics_token', response.access);
-            sessionStorage.setItem('admin_analytics_refresh_token', 
-                                   response.refresh);
-        }
-
-        return response;
     });
 
-    return {
-        type: FETCH_JWT,
-        payload: response,
-    }
+    return (dispatch) => {
+        response
+            .then(({data}) => {
+                sessionStorage.setItem('', response.data.access);
+                sessionStorage.setItem('', response.data.refresh);
+
+                dispatch({type: FETCH_JWT_SUCCESS, payload: data});
+            })
+            .catch((error) => {
+                dispatch({type: FETCH_JWT_FAILURE});
+            });
+    };
 }
 
 export function logout() {
@@ -42,15 +46,35 @@ export function refreshJWT(refreshToken) {
         params: {
             refresh: refreshToken,
         }
-    }).then(response => {
-        if (response.status === 200) {
-            sessionStorage.setItem('admin_analytics_token', response.access);
-        }
-
-        return response;
     });
 
-    return {
-        type: REFRESH_JWT,
-    }
+    return (dispatch) => {
+        response
+            .then(({data}) => {
+                sessionStorage.setItem('', response.data.access);
+                
+                dispatch({type: REFRESH_JWT_SUCCESS, payload: data});
+            })
+            .catch((error) => {
+                dispatch({type: REFRESH_JWT_FAILURE});
+            });
+    };
+}
+
+export function verifyJWT(accessToken) {
+    const response = axios.post(DJANGO_URL + 'api/token/verify/', {
+        params: {
+            access: accessToken,
+        }
+    });
+
+    return (dispatch) => {
+        response
+            .then(({data}) => {
+                dispatch({type: VERIFY_JWT_SUCCESS});
+            })
+            .catch((error) => {
+                dispatch({type: VERIFY_JWT_FAILURE});
+            });
+    };
 }
