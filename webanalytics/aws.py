@@ -11,3 +11,6 @@ class AWS:
 
     def get_cloudtrail_logs(self, **kwargs):
         return self.session.client('cloudtrail').lookup_events(**kwargs)
+    
+    def get_pinpoint_analytics(self, **kwargs):
+        pass

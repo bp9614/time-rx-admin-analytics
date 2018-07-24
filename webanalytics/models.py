@@ -10,20 +10,23 @@ connect('timerx-dev-server', username=username, password=password)
 
 
 class Resources(EmbeddedDocument):
-    resources = DictField()
+    accountId = StringField()
+    ARN = StringField()
+    type = StringField()
+    
 
 
-class CloudTrailEvent(DynamicDocument):
-    eventVersion = StringField()
-    userIdentity = DictField()
-    eventTime = DateTimeField()
+class CloudTrailLog(DynamicDocument):
+    eventVersion = StringField(required=True)
+    userIdentity = DictField(required=True)
+    eventTime = DateTimeField(required=True)
     eventSource = StringField()
-    eventName = StringField()
-    awsRegion = StringField()
+    eventName = StringField(required=True)
+    awsRegion = StringField(required=True)
     requredParameters = DictField()
     requestID = StringField(required=True)
     eventID = StringField(required=True)
     resources = ListField(EmbeddedDocumentField(Resources))
-    eventType = StringField()
+    eventType = StringField(required=True)
     recipientAccountId = StringField()
     sharedEventID = StringField()
