@@ -13,6 +13,8 @@ djangorestframework==3.8.2
 djangorestframework-simplejwt==3.2.3
 djangotoolbox==1.8.0
 docutils==0.14
+eventlet==0.23.0
+greenlet==0.4.14
 jmespath==0.9.3
 kombu==4.2.1
 Markdown==2.6.11
