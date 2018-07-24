@@ -11,12 +11,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from timerx.secrets import SECRET_KEY
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-SECRET_KEY = 'w5k@r!hbgk0n@w5ov3-jjs7&@@$m6tsa0f5l(4(vlerq=@-1-)'
-ACCESS_KEY_LOC = '.keys/accessKeys.csv'
-MONGODB_USER_PASSWORD_LOC = '.keys/for_mongodb.csv'
 
 DEBUG = True
 

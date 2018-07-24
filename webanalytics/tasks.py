@@ -4,12 +4,11 @@ from datetime import timedelta
 import pandas as pd
 
 from timerx.celery import app as celery_app
-from timerx.settings import ACCESS_KEY_LOC
+from timerx.secrets import ACCESS_KEY, SECRET_KEY
 from webanalytics.aws import AWS
 from webanalytics.models import CloudTrailLog, Resources
 
-access_key, secret_key = pd.read_csv(ACCESS_KEY_LOC).iloc[0]
-aws = AWS(access_key, secret_key)
+aws = AWS(ACCESS_KEY, SECRET_KEY)
 
 @celery_app.on_after_finalize.connect
 def setup_periodic_tasks(sender, **kwargs):

@@ -1,12 +1,10 @@
 import os
 import pandas as pd
 from mongoengine import *
-from timerx.settings import MONGODB_USER_PASSWORD_LOC
+from timerx.secrets import MONGODB_PWD, MONGODB_USERNAME
 
-username, password = pd.read_csv(
-    MONGODB_USER_PASSWORD_LOC, index_col=0).iloc[0]
 
-connect('timerx-dev-server', username=username, password=password)
+connect('timerx-dev-server', username=MONGODB_USERNAME, password=MONGODB_PWD)
 
 
 class Resources(EmbeddedDocument):
