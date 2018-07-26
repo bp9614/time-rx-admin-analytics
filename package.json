@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "aws-sdk": "^2.277.1",
     "axios": "^0.18.0",
     "chart.js": "1.1.1",
     "lodash": "^4.17.10",
