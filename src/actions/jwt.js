@@ -30,7 +30,7 @@ export function logout() {
     sessionStorage.removeItem('admin_analytics_refresh_token');
 
     return {
-        type: LOGOUT,
+        type: actionTypes.LOGOUT,
     };
 }
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 
-import { fetchJWT } from '../actions';
+import { fetchJWT } from '../actions/index';
 import renderField from './render_field';
 import './login_page.css';
 
