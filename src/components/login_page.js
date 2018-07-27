@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import { fetchJWT } from '../actions';
 import renderField from './render_field';
 import './login_page.css';
 
 class LoginPage extends Component {
+    onSubmit(values) {
+        this.props.fetchJWT(values.username, values.pw, () => {
+            this.props.history.push('/analytics');
+        });
+    }
+
     render() {
+        const {handleSubmit} = this.props;
+
         return (
             <div className="login-page">
                 <div className="form">
                     <h3 className="text-centered cursive-font">Time-Rx</h3>
                     <h3 className="text-centered lower-margin">Admin Analytics</h3>
-                    <form className="login-form">
+                    <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="login-form">
                         <Field 
                             label="Username" id="username" name="username" 
                             type="text" placeholder="Username" 
@@ -46,4 +55,4 @@ function validate(values) {
 export default reduxForm({
     validate: validate,
     form: 'LoginPageForm',
-})(LoginPage);
+})(connect(null, {fetchJWT})(LoginPage));
