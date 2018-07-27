@@ -1,18 +1,18 @@
 import _ from 'lodash';
 import React from 'react';
 
-import {FETCH_JWT, REFRESH_JWT, LOGOUT} from '../actions/index';
+import * as actionTypes from '../action/action_types';
 
 export default function(state={}, action) {
-    if (action.type === FETCH_JWT) {
+    if (action.type === actionTypes.FETCH_JWT) {
         state = {...state, ...action.payload.data}
     }
 
-    if (action.type === REFRESH_JWT) {
+    if (action.type === actionTypes.REFRESH_JWT) {
         state = {...state, ...action.payload.data}
     }
 
-    if (action.type === LOGOUT) {
+    if (action.type === actionTypes.LOGOUT) {
         state = _.omit(state, ['access', 'refresh']) 
     }
 
