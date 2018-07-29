@@ -4,7 +4,7 @@ import * as actionTypes from '../actions/action_types';
 
 export default function (state = {authenticated: false}, action) {
   switch (action.type) {
-    case actionTypes.AUTHENICATED:
+    case actionTypes.AUTHENTICATED:
       state = {
         ...state,
         authenticated: true,
