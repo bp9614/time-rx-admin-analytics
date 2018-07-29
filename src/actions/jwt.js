@@ -4,12 +4,8 @@ import * as consts from '../consts';
 import * as actionTypes from './action_types';
 
 export function fetchJWT(username, password) {
-    const response = axios.post(consts.DJANGO_URL + 'api/token/', {
-        params: {
-            username,
-            password,
-        }
-    });
+    const response = axios.post(consts.DJANGO_URL + 'api/token/',
+        {username, password} , consts.AXIOS_HEADERS);
 
     return (dispatch) => {
         response
@@ -35,11 +31,8 @@ export function logout() {
 }
 
 export function refreshJWT(refreshToken) {
-    const response = axios.post(consts.DJANGO_URL + 'api/token/refresh/', {
-        params: {
-            refresh: refreshToken,
-        }
-    });
+    const response = axios.post(consts.DJANGO_URL + 'api/token/refresh/', 
+        {refresh: refreshToken}, consts.AXIOS_HEADERS);
 
     return (dispatch) => {
         response
@@ -55,11 +48,8 @@ export function refreshJWT(refreshToken) {
 }
 
 export function verifyJWT(accessToken) {
-    const response = axios.post(consts.DJANGO_URL + 'api/token/verify/', {
-        params: {
-            access: accessToken,
-        }
-    });
+    const response = axios.post(consts.DJANGO_URL + 'api/token/verify/',
+        {access: accessToken}, consts.AXIOS_HEADERS);
 
     return (dispatch) => {
         response
@@ -71,3 +61,4 @@ export function verifyJWT(accessToken) {
             });
     };
 }
+
