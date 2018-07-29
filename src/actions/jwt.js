@@ -4,21 +4,21 @@ import * as consts from '../consts';
 import * as actionTypes from './action_types';
 
 export function fetchJWT(username, password) {
-    const response = axios.post(consts.DJANGO_URL + 'api/token/',
-        {username, password} , consts.AXIOS_HEADERS);
+  const response = axios.post(consts.DJANGO_URL + 'api/token/',
+    {username, password} , consts.AXIOS_HEADERS);
 
-    return (dispatch) => {
-        response
-            .then(({data}) => {
-                sessionStorage.setItem('', response.data.access);
-                sessionStorage.setItem('', response.data.refresh);
+  return (dispatch) => {
+    response
+      .then(({data}) => {
+        sessionStorage.setItem('', response.data.access);
+        sessionStorage.setItem('', response.data.refresh);
 
-                dispatch({type: actionTypes.FETCH_JWT_SUCCESS, payload: data});
-            })
-            .catch((error) => {
-                dispatch({type: actionTypes.FETCH_JWT_FAILURE});
-            });
-    };
+        dispatch({type: actionTypes.FETCH_JWT_SUCCESS, payload: data});
+      })
+      .catch((error) => {
+        dispatch({type: actionTypes.FETCH_JWT_FAILURE});
+      });
+  };
 }
 
 export function logout() {
@@ -31,34 +31,34 @@ export function logout() {
 }
 
 export function refreshJWT(refreshToken) {
-    const response = axios.post(consts.DJANGO_URL + 'api/token/refresh/', 
-        {refresh: refreshToken}, consts.AXIOS_HEADERS);
+  const response = axios.post(consts.DJANGO_URL + 'api/token/refresh/', 
+    {refresh: refreshToken}, consts.AXIOS_HEADERS);
 
-    return (dispatch) => {
-        response
-            .then(({data}) => {
-                sessionStorage.setItem('', response.data.access);
+  return (dispatch) => {
+    response
+      .then(({data}) => {
+        sessionStorage.setItem('', response.data.access);
                 
-                dispatch({type: actionTypes.REFRESH_JWT_SUCCESS, payload: data});
-            })
-            .catch((error) => {
-                dispatch({type: actionTypes.REFRESH_JWT_FAILURE});
-            });
-    };
+          dispatch({type: actionTypes.REFRESH_JWT_SUCCESS, payload: data});
+      })
+      .catch((error) => {
+        dispatch({type: actionTypes.REFRESH_JWT_FAILURE});
+      });
+  };
 }
 
 export function verifyJWT(accessToken) {
-    const response = axios.post(consts.DJANGO_URL + 'api/token/verify/',
-        {access: accessToken}, consts.AXIOS_HEADERS);
+  const response = axios.post(consts.DJANGO_URL + 'api/token/verify/',
+    {access: accessToken}, consts.AXIOS_HEADERS);
 
-    return (dispatch) => {
-        response
-            .then(({data}) => {
-                dispatch({type: actionTypes.VERIFY_JWT_SUCCESS});
-            })
-            .catch((error) => {
-                dispatch({type: actionTypes.VERIFY_JWT_FAILURE});
-            });
-    };
+  return (dispatch) => {
+    response
+      .then(({data}) => {
+        dispatch({type: actionTypes.VERIFY_JWT_SUCCESS});
+      })
+      .catch((error) => {
+        dispatch({type: actionTypes.VERIFY_JWT_FAILURE});
+      });
+  };
 }
 
