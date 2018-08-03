@@ -1,0 +1,9 @@
+export const AUTHENTICATED = 'AUTHENTICATED';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const LOADING = 'LOADING';
+export const LOGOUT = 'LOGOUT';
+export const FETCH_JWT_SUCCESS = 'FETCH_JWT_SUCCESS';
+export const FETCH_JWT_FAILURE = 'FETCH_JWT_FAILURE';
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const VERIFY_JWT_SUCCESS = 'VERIFY_JWT_SUCCESS';
+export const VERIFY_JWT_FAILURE = 'VERIFY_JWT_FAILURE';
