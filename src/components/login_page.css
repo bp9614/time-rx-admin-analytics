@@ -91,9 +91,13 @@
 }
 
 .lower-margin {
-  margin-bottom: 1.5em;
+  margin-bottom: 1.25em;
 }
 
 .cursive-font {
   font-family: 'Berkshire Swash', Helvetica, sans-serif;
+}
+
+.modal-centered {
+  text-align: center;
 }

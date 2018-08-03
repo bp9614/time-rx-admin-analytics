@@ -6,8 +6,21 @@ body {
 
 .error-msg {
   color: red;
+  font-family: Verdana;
 }
 
 .right-margin {
   margin-right: 1em;
+}
+
+button:disabled {
+  opacity: 0.3;
+}
+
+.margin-medium-above {
+  margin-top: 1.5em;
+}
+
+.margin-medium-above {
+  margin-top: 1.5em;
 }

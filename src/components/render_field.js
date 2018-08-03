@@ -2,7 +2,7 @@ import React from 'react';
 
 export default (field) => {
   const warningLabel =
-    field.meta.touched && field.meta.error ? ' has-danger' : '';
+      field.meta.touched && field.meta.error ? ' has-danger' : '';
   const errorMessage = field.meta.touched ? field.meta.error : '';
 
   return (
