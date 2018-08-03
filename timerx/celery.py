@@ -3,7 +3,7 @@ import os
 from celery import Celery
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'timerx.settings')
-app = Celery('timerx', include=['webanalytics.tasks'])
+app = Celery('timerx', include=['analytics.tasks'])
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 

@@ -6,7 +6,7 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('webanalytics.urls')),
+    path('', include('analytics.urls')),
     path('api-auth/', include('rest_framework.urls')),
     re_path(r'^api/token/$', TokenObtainPairView.as_view(),
             name='token_obtain_pair'),
