@@ -10,12 +10,14 @@ import './login_page.css';
 const customStyles = {
   overlay: {zIndex: 3},
   content : {
-    top                   : '33%',
-    left                  : '35%',
-    right                 : '35%',
-    bottom                : '35%',
+    top: '35%',
+    bottom: '35%',
+    left: '40%',
+    right: '40%',
+    display: 'flex',
+    flexDirection: 'column',
+    boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24)',
   },
-  boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24)',
 };
 
 Modal.setAppElement('#root');
@@ -38,34 +40,42 @@ class LoginPage extends Component {
 
     return (
       <div>
-        <div className="login-page">
-          <div className="form">
-            <h3 className="text-centered cursive-font">Time-Rx</h3>
-            <h3 className="text-centered lower-margin">Admin Analytics</h3>
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))} 
-                className="login-form">
-              <Field
-                label="Username" id="username" name="username"
-                type="text" placeholder="Username"
-                component={renderField} />
-              <Field
-                label="Password" id="pw" name="pw" type="password"
-                placeholder="Password" component={renderField} />
-              <button type="submit" disabled={this.props.isLoading}>
-                Submit
-              </button>
-            </form>
+        <div className="outer">
+          <div className="middle">
+            <div className="login-page">
+              <div className="form">
+                <h3 className="text-centered cursive-font">Time-Rx</h3>
+                <h3 className="text-centered lower-margin">Admin Analytics</h3>
+                <form onSubmit={handleSubmit(this.onSubmit.bind(this))} 
+                    className="login-form">
+                  <Field
+                    label="Username" id="username" name="username"
+                    type="text" placeholder="Username"
+                    component={renderField} />
+                  <Field
+                    label="Password" id="pw" name="pw" type="password"
+                    placeholder="Password" component={renderField} />
+                  <button type="submit" disabled={this.props.isLoading}>
+                    Submit
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
         <Modal 
             isOpen={this.props.showModal} 
             onRequestClose={this.props.closeModal}
             style={customStyles}>
-          <div className="modal-centered margin-medium-above error-msg">
-            <h1>{this.props.errorMsg}</h1><br/>
-            <button 
-                className="btn btn-warning btn-lg margin-medium-above" 
-                onClick={this.props.closeModal}>OK</button>
+          <button 
+              onClick={this.props.closeModal} 
+              type="button" 
+              className="close right" 
+              aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div className="fill vertical-centered error-msg">
+            <h1>{this.props.errorMsg}</h1>
           </div>
         </Modal>
       </div>

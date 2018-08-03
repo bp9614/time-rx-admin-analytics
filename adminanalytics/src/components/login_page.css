@@ -2,7 +2,6 @@
 
 .login-page {
   width: 500px;
-  padding: 12% 0 0;
   margin: auto;
 }
 .form {
@@ -10,7 +9,7 @@
   z-index: 1;
   background: #FFFFFF;
   max-width: 500px;
-  margin: 0 auto 100px;
+  margin: 0 auto;
   padding: 45px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
@@ -96,8 +95,4 @@
 
 .cursive-font {
   font-family: 'Berkshire Swash', Helvetica, sans-serif;
-}
-
-.modal-centered {
-  text-align: center;
 }

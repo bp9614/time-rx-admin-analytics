@@ -6,7 +6,7 @@ body {
 
 .error-msg {
   color: red;
-  font-family: Verdana;
+  font-style: italic;
 }
 
 .right-margin {
@@ -21,6 +21,33 @@ button:disabled {
   margin-top: 1.5em;
 }
 
-.margin-medium-above {
-  margin-top: 1.5em;
+.margin-medium-small {
+  margin-top: 1em;
+}
+
+.outer {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.fill {
+  flex:1;
+}
+
+.vertical-centered {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.right {
+  margin-left: auto;
 }
