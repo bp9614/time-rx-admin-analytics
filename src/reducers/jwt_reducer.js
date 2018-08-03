@@ -35,7 +35,6 @@ export default function (state = {authenticated: false}, action) {
         ['access', 'refresh']);
       break;
     default:
-      break;
   }
 
   return state;
