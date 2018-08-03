@@ -7,7 +7,7 @@
 
 ## Installation
 ```sh
-git clone https://github.com/bp9614/timerx-admin-side
+git clone https://github.com/bp9614/time-rx-admin-analytics
 ```
 
 ```sh
