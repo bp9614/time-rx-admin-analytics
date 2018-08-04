@@ -7,6 +7,7 @@ export default function (state = {authenticated: false}, action) {
     case actionTypes.AUTHENTICATED:
       state = {
         ...state,
+        ...action.payload,
         authenticated: true,
       }
       break;
@@ -25,13 +26,8 @@ export default function (state = {authenticated: false}, action) {
       };
       break;
     case actionTypes.VERIFY_JWT_FAILURE:
-      state = {
-        ...state, 
-        authenticated: false
-      };
-      break;
     case actionTypes.LOGOUT:
-      state = _.omit({ ...state, authenticated: true },
+      state = _.omit({ ...state, authenticated: false },
         ['access', 'refresh']);
       break;
     default:

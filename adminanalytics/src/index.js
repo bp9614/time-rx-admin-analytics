@@ -19,7 +19,10 @@ const store = createStoreWithMiddleware(reducers);
 const accessToken = sessionStorage.getItem('admin_analytics_access');
 const refreshToken = sessionStorage.getItem('admin_analytics_refresh');
 if (accessToken && refreshToken) {
-  store.dispatch({type: AUTHENTICATED});
+  store.dispatch({type: AUTHENTICATED, payload: {
+    'access': accessToken,
+    'refresh': refreshToken
+  }});
 }
 
 ReactDOM.render(
