@@ -11,6 +11,7 @@ import LoginPage from './components/login_page';
 import reducers from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 import RequireAuth from './components/require_auth';
+import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);

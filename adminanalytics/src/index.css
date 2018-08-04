@@ -10,7 +10,7 @@ body {
 }
 
 .right-margin {
-  margin-right: 1em;
+  margin-right: 1em !important;
 }
 
 button:disabled {
@@ -18,11 +18,11 @@ button:disabled {
 }
 
 .margin-medium-above {
-  margin-top: 1.5em;
+  margin-top: 1.5em !important;
 }
 
 .margin-medium-small {
-  margin-top: 1em;
+  margin-top: 1em !important;
 }
 
 .outer {
@@ -50,4 +50,8 @@ button:disabled {
 
 .right {
   margin-left: auto;
+}
+
+.larger-text {
+  font-size: 1.5rem;
 }
