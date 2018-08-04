@@ -1,5 +1,4 @@
 import _ from 'lodash';
-
 import * as actionTypes from '../actions/action_types';
 
 export default function (state = {authenticated: false}, action) {
