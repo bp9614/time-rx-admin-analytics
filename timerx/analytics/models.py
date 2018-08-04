@@ -38,3 +38,17 @@ class DynamoDBCount(Document):
     tableName = StringField(required=True)
     entries = IntField(required=True)
     timeStamp = DateTimeField(required=True)
+
+
+class AWSLoggingHistory(Document):
+    service = StringField(required=True)
+    timeStamp = DateTimeField(required=True)
+    entries = IntField()
+
+
+class RequestHistory(Document):
+    userName = StringField(required=True)
+    ip = StringField(required=True)
+    collection = StringField(required=True)
+    options = DictField(required=True)
+    timeStamp = DateTimeField(required=True)
