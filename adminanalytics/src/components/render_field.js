@@ -6,10 +6,12 @@ export default (field) => {
   const errorMessage = field.meta.touched ? field.meta.error : '';
 
   return (
-    <div className={"form-group" + warningLabel}>
-      <label htmlFor={field.id}>{field.label}</label>
+    <div className={"bootstrap-form-group" + warningLabel}>
+      <label className="bootstrap-label" htmlFor={field.id}>
+        {field.label}
+      </label>
       <input
-        className="form-control" type={field.type} id={field.id}
+        className="bootstrap-form-control" type={field.type} id={field.id}
         placeholder={field.placeholder} {...field.input} />
       <p className="error-msg">{errorMessage}</p>
     </div>

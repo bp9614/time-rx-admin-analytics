@@ -96,3 +96,39 @@
 .cursive-font {
   font-family: 'Berkshire Swash', Helvetica, sans-serif;
 }
+
+.bootstrap-form-group {
+  margin-bottom: 1rem;
+}
+
+.bootstrap-form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.bootstrap-label {
+  display: inline-block !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.bootstrap-h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+}

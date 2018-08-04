@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
-
 import { fetchJWT, closeModal } from '../actions/index';
 import renderField from './render_field';
 import './login_page.css';
@@ -44,10 +43,13 @@ class LoginPage extends Component {
           <div className="middle">
             <div className="login-page">
               <div className="form">
-                <h3 className="text-centered cursive-font">Time-Rx</h3>
-                <h3 className="text-centered lower-margin">Admin Analytics</h3>
-                <form onSubmit={handleSubmit(this.onSubmit.bind(this))} 
-                    className="login-form">
+                <h3 className="text-centered cursive-font bootstrap-h3">
+                  Time-Rx
+                </h3>
+                <h3 className="text-centered bootstrap-h3 lower-margin">
+                  Admin Analytics
+                </h3>
+                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                   <Field
                     label="Username" id="username" name="username"
                     type="text" placeholder="Username"
