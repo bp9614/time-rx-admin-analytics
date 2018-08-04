@@ -5,9 +5,9 @@ from timerx.celery import app as celery_app
 from timerx.secrets import (
     AWS_ACCESS_KEY, AWS_SECRET_KEY, DYNAMODB_TABLES, TIMERX_USER_POOL
 )
-from webanalytics.aws import AWS
-from webanalytics.models import (
-    CloudTrailLog, DynamoDBCount, EstimatedUsers, Resources
+from analytics.aws import AWS
+from analytics.models import (
+    AWSLoggingHistory, CloudTrailLog, DynamoDBCount, EstimatedUsers, Resources
 )
 
 aws = AWS(AWS_ACCESS_KEY, AWS_SECRET_KEY)
@@ -38,6 +38,9 @@ def get_cloudtrail_logs(**kwargs):
             for full_event in aws.lookup_events(**attributes)['Events']]
     if logs:
         CloudTrailLog.objects.insert([CloudTrailLog(**log) for log in logs])
+    
+    AWSLoggingHistory(service='CloudTrail', timeStamp=datetime.datetime.now(),
+                      entries=len(logs)).save()
 
 
 @celery_app.task(ignore_result=True)
@@ -46,6 +49,9 @@ def get_estimated_users(user_pool_id):
                    estimatedUsers=aws.describe_user_pool(
                        user_pool_id)['UserPool']['EstimatedNumberOfUsers'],
                    timeStamp=datetime.datetime.now()).save()
+    
+    AWSLoggingHistory(service='Cognito', timeStamp=datetime.datetime.now())\
+        .save()
 
 
 @celery_app.task(ignore_result=True)
@@ -54,3 +60,6 @@ def get_dynamodb_entry_count(table_name):
                   estimatedUsers=aws.dynamodb_table_count(
                       table_name)['Table']['ItemCount'],
                   timeStamp=datetime.datetime.now()).save()
+
+    AWSLoggingHistory(service='DynamoDB', timeStamp=datetime.datetime.now())\
+        .save()
