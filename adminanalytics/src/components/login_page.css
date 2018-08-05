@@ -90,7 +90,7 @@
 }
 
 .lower-margin {
-  margin-bottom: 1.25em;
+  margin-bottom: 1.25em !important;
 }
 
 .bootstrap-form-group {
