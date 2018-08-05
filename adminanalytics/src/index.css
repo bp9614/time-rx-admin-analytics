@@ -55,3 +55,7 @@ button:disabled {
 .larger-text {
   font-size: 1.5rem;
 }
+
+.cursive-font {
+  font-family: 'Berkshire Swash', Helvetica, sans-serif;
+}
