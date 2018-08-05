@@ -54,7 +54,7 @@ export function verifyFirst(access, refresh, funcAfter, ...funcArgs) {
 
         access = sessionStorage.getItem('admin_analytics_access');
         if (!access) {
-          throw new Error('Unauthenticated');
+          return Promise.reject();
         }
       })
       .then(() => {
