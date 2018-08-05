@@ -1,7 +1,7 @@
 from django.urls import path
-
-from . import views
+from analytics import views
 
 urlpatterns = [
-    path('', views.index, name='index')
+    path('query/<str:component>', views.query, name='query'),
+    path('username', views.username, name='username')
 ]
