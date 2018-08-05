@@ -1,7 +1,7 @@
 import axios from 'axios';
-
-import * as consts from '../consts';
 import * as actionTypes from './action_types';
+import * as consts from '../consts';
+import { authorizationTokenCreator } from '../functions/index';
 
 export function fetchJWT(username, password, callback) {
   const response = axios.post(consts.DJANGO_URL + 'api/token/',
@@ -15,7 +15,10 @@ export function fetchJWT(username, password, callback) {
         sessionStorage.setItem('admin_analytics_access', data.access);
         sessionStorage.setItem('admin_analytics_refresh', data.refresh);
 
-        dispatch({ type: actionTypes.FETCH_JWT_SUCCESS, payload: data });
+        dispatch({ type: actionTypes.FETCH_JWT_SUCCESS, payload: {
+          ...data,
+          username,
+        }});
 
         callback();
       })
@@ -34,35 +37,53 @@ export function logout() {
     };
 }
 
-function refreshJWT(refreshToken){
-  const response = axios.post(consts.DJANGO_URL + 'api/token/refresh/', 
-      { refresh: refreshToken }, consts.AXIOS_HEADERS);
-  
-  return response.data.access;
-}
-export function verifyJWT(accessToken, refreshToken) {
-  const response = axios.post(consts.DJANGO_URL + 'api/token/verify/',
-      { token: accessToken }, consts.AXIOS_HEADERS);
+export function verifyFirst(access, refresh, funcAfter, ...funcArgs) {
+  const response = axios.post(consts.DJANGO_URL + 'api/token/verify/', 
+    { token: access }, consts.AXIOS_HEADERS);
 
   return (dispatch) => {
     dispatch({ type: actionTypes.LOADING });
 
     response
-      .then(({data}) => {
+      .then((data) => {
         dispatch({ type: actionTypes.VERIFY_JWT_SUCCESS });
       })
-      .catch((error) => {
-        const newAccessToken = refreshJWT(refreshToken);
-        if (newAccessToken) {
-          sessionStorage.setItem('admin_analytics_access' , newAccessToken);
-          dispatch({ type: actionTypes.VERIFY_JWT_SUCCESS });
-        } else {
-          sessionStorage.removeItem('admin_analytics_access');
-          sessionStorage.removeItem('admin_analytics_refresh');
+      .catch(async (error) => {
+        sessionStorage.removeItem('admin_analytics_access');
+        await refreshJWT(dispatch, refresh);
 
-          dispatch({type: actionTypes.VERIFY_JWT_FAILURE});
+        access = sessionStorage.getItem('admin_analytics_access');
+        if (!access) {
+          throw new Error('Unauthenticated');
         }
+      })
+      .then(() => {
+        return axios.get(...funcAfter(access, ...funcArgs));
+      })
+      .then(({data}) => {
+        dispatch({ type: actionTypes.GET_USERNAME, payload: data });
       });
   };
 }
 
+function refreshJWT(dispatch, refresh){
+  const response = axios.post(consts.DJANGO_URL + 'api/token/refresh/', 
+      { refresh }, consts.AXIOS_HEADERS);
+  
+  return response
+    .then(({data}) => {
+      sessionStorage.setItem('admin_analytics_access', data.access);
+      dispatch({ type: actionTypes.REFRESH_JWT_SUCCESS, payload: data });
+    })
+    .catch((error) => {
+      sessionStorage.removeItem('admin_analytics_refresh');
+      dispatch({type: actionTypes.REFRESH_JWT_FAILURE});
+    })
+    .finally(() => {});
+}
+
+export function getUsername(access) {
+  return [consts.DJANGO_URL + 'api/username', {
+    headers: authorizationTokenCreator(access)
+  }];
+}

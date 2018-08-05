@@ -10,20 +10,28 @@ export default function (state = {authenticated: false}, action) {
         authenticated: true,
       }
       break;
+    case actionTypes.GET_USERNAME:
+      state = {
+        ...state,
+        ...action.payload,
+        authenticated: true,
+      }
+      break;
     case actionTypes.FETCH_JWT_SUCCESS:
       state = {
         ...state, 
-        ...action.payload.data, 
+        ...action.payload, 
         authenticated: true
       };
       break;
     case actionTypes.VERIFY_JWT_SUCCESS:
       state = {
         ...state, 
-        ...action.payload.data, 
+        ...action.payload, 
         authenticated: true
       };
       break;
+    case actionTypes.REFRESH_JWT_FAILURE:
     case actionTypes.VERIFY_JWT_FAILURE:
     case actionTypes.LOGOUT:
       state = _.omit({ ...state, authenticated: false },

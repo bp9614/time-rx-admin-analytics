@@ -5,6 +5,8 @@ export default function(state={isLoading: false}, action) {
     case actionTypes.LOADING:
       state = {...state, isLoading: true}
       break;
+    case actionTypes.REFRESH_JWT_SUCCESS:
+    case actionTypes.REFRESH_JWT_FAILURE:
     case actionTypes.FETCH_JWT_SUCCESS:
     case actionTypes.FETCH_JWT_FAILURE:
     case actionTypes.VERIFY_JWT_SUCCESS:
