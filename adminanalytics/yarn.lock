@@ -5208,6 +5208,10 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
+popper.js@^1.14.1:
+  version "1.14.4"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.4.tgz#8eec1d8ff02a5a3a152dd43414a15c7b79fd69b6"
+
 portfinder@^1.0.9:
   version "1.0.13"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.13.tgz#bb32ecd87c27104ae6ee44b5a3ccbf0ebb1aede9"
@@ -5710,6 +5714,15 @@ react-chartjs@^1.2.0:
   dependencies:
     create-react-class "^15.6.2"
 
+react-datepicker@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-1.6.0.tgz#6b7a87e949f3bbd94872554be6a0119bd908a987"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+    react-onclickoutside "^6.7.1"
+    react-popper "^0.9.1"
+
 react-dates@^17.1.1:
   version "17.1.1"
   resolved "https://registry.yarnpkg.com/react-dates/-/react-dates-17.1.1.tgz#4703d701546c9f2edae86df7feb8648f6a02b247"
@@ -5783,6 +5796,10 @@ react-moment-proptypes@^1.6.0:
   dependencies:
     moment ">=1.6.0"
 
+react-onclickoutside@^6.7.1:
+  version "6.7.1"
+  resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.7.1.tgz#6a5b5b8b4eae6b776259712c89c8a2b36b17be93"
+
 react-outside-click-handler@^1.2.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/react-outside-click-handler/-/react-outside-click-handler-1.2.2.tgz#2c4609fbaacbfc192e269786d555419b115bf93f"
@@ -5790,6 +5807,13 @@ react-outside-click-handler@^1.2.0:
     airbnb-prop-types "^2.10.0"
     consolidated-events "^1.1.1 || ^2.0.0"
     object.values "^1.0.4"
+    prop-types "^15.6.1"
+
+react-popper@^0.9.1:
+  version "0.9.5"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.9.5.tgz#02a24ef3eec33af9e54e8358ab70eb0e331edd05"
+  dependencies:
+    popper.js "^1.14.1"
     prop-types "^15.6.1"
 
 react-portal@^4.1.5:
