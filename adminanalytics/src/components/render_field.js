@@ -11,8 +11,8 @@ export default (field) => {
         {field.label}
       </label>
       <input
-        className="bootstrap-form-control" type={field.type} id={field.id}
-        placeholder={field.placeholder} {...field.input} />
+          className={field.className} type={field.type} id={field.id}
+          placeholder={field.placeholder} {...field.input} />
       <p className="error-msg">{errorMessage}</p>
     </div>
   );
