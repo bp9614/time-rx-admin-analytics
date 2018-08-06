@@ -58,10 +58,7 @@ export function verifyFirst(access, refresh, funcAfter, ...funcArgs) {
         }
       })
       .then(() => {
-        return axios.get(...funcAfter(access, ...funcArgs));
-      })
-      .then(({data}) => {
-        dispatch({ type: actionTypes.GET_USERNAME, payload: data });
+        funcAfter(dispatch, access, ...funcArgs);
       });
   };
 }
@@ -82,8 +79,15 @@ function refreshJWT(dispatch, refresh){
     .finally(() => {});
 }
 
-export function getUsername(access) {
-  return [consts.DJANGO_URL + 'api/username', {
+export function getUsername(dispatch, access) {
+  const response = axios.get(consts.DJANGO_URL + 'api/username', {
     headers: authorizationTokenCreator(access)
-  }];
+  });
+
+  dispatch({ type: actionTypes.LOADING });
+
+  response
+    .then(({data}) => {
+      dispatch({ type: actionTypes.GET_USERNAME, payload: data })
+    });
 }
