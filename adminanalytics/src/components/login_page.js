@@ -51,12 +51,14 @@ class LoginPage extends Component {
                 </h3>
                 <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                   <Field
-                    label="Username" id="username" name="username"
-                    type="text" placeholder="Username"
-                    component={renderField} />
+                      label="Username" id="username" name="username"
+                      type="text" placeholder="Username"
+                      className="bootstrap-form-control"
+                      component={renderField} />
                   <Field
-                    label="Password" id="pw" name="pw" type="password"
-                    placeholder="Password" component={renderField} />
+                      label="Password" id="pw" name="pw" type="password"
+                      placeholder="Password" className="bootstrap-form-control"
+                      component={renderField} />
                   <button type="submit" disabled={this.props.isLoading}>
                     Submit
                   </button>
