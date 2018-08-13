@@ -1,7 +1,12 @@
 import { LOGIN_ERROR_MESSAGE } from '../consts/index';
 import * as actionTypes from '../actions/action_types';
 
-export default function(state={showModal: false}, action) {
+const defaultState = {
+  showModal: false,
+  emptyResponseModal: false,
+};
+
+export default function(state=defaultState, action) {
   switch (action.type) {
     case actionTypes.FETCH_JWT_FAILURE:
       state = {
@@ -17,9 +22,15 @@ export default function(state={showModal: false}, action) {
     case actionTypes.CLOSE_MODAL:
       state = {
         ...state,
-        showModal: false
+        showModal: false,
+        emptyResponseModal: false,
       };
       break;
+    case actionTypes.EMPTY_RESPONSE:
+      state = {
+        ...state,
+        emptyResponseModal: true,
+      }
     default:
   }
 

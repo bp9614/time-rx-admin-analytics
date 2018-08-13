@@ -14,16 +14,18 @@ aws = AWS(AWS_ACCESS_KEY, AWS_SECRET_KEY)
 
 @celery_app.on_after_finalize.connect
 def setup_periodic_tasks(sender, **kwargs):
-    sender.add_periodic_task(datetime.timedelta(minutes=30), 
+    sender.add_periodic_task(datetime.timedelta(minutes=15), 
                              get_cloudtrail_logs.s(), 
-                             name='Get CloudTrial Logs (1/2 hr delay)')
-    sender.add_periodic_task(datetime.timedelta(minutes=30), 
+                             name='Get CloudTrial Logs (1/4 hr delay)')
+    sender.add_periodic_task(datetime.timedelta(minutes=15), 
                              get_estimated_users.s(TIMERX_USER_POOL),
-                             name='Get Estimated Users (1/2 hr delay)')
-    for table in DYNAMODB_TABLES:
-        sender.add_periodic_task(datetime.timedelta(minutes=30),
-                                 get_dynamodb_entry_count.s(table),
-                                 name='Get Table Entry Count (1/2 hr delay)')
+                             name='Get Estimated Users (1/4 hr delay)')
+    for table in DYNAMODB_TABLES.values():
+        sender.add_periodic_task(
+            datetime.timedelta(minutes=15),
+            get_dynamodb_entry_count.s(table),
+            name='Get {} Entry Count (1/4 hr delay)'.format(table)
+        )
 
 
 @celery_app.task(ignore_result=True)
@@ -57,7 +59,7 @@ def get_estimated_users(user_pool_id):
 @celery_app.task(ignore_result=True)
 def get_dynamodb_entry_count(table_name):
     DynamoDBCount(tableName=table_name,
-                  estimatedUsers=aws.dynamodb_table_count(
+                  entries=aws.dynamodb_table_count(
                       table_name)['Table']['ItemCount'],
                   timeStamp=datetime.datetime.now()).save()
 

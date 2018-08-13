@@ -48,6 +48,10 @@ button:disabled {
   text-align: center;
 }
 
+.horizontally-centered {
+  text-align: center;
+}
+
 .right {
   margin-left: auto;
 }
@@ -98,4 +102,61 @@ button:disabled {
 
 .reduced-width {
   width: 10% !important;
+}
+
+.slight-off-corner {
+  margin-left: 2rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.wrap {
+  display: flex;
+}
+
+.left-half {
+  display: table;
+  position: absolute;
+  width: 50%;
+  left: 0px;
+  height: 84%;
+}
+
+.right-half {
+  display: table;
+  position: absolute;
+  width: 50%;
+  right: 0px;
+  height: 84%;
+}
+
+.rounded-corners {
+  border-radius: 0.5rem;
+}
+
+.shadowed {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.chart-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div > canvas {
+  display: inline-block !important;
+}
+
+.inline {
+  display:inline;
+}
+
+.side-margins {
+  margin-left: 1rem;
+  margin-right: 1.1rem;
+}
+
+.thin-border {
+  border-style: dotted;
+  border-width: 1px;
 }

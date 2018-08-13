@@ -1,8 +1,8 @@
 export const COLLECTIONS = [
-  'CloudTrail',
-  'Cognito',
-  'DynamoDB',
-  'History',
+  {text: 'CloudTrail', value: 'CloudTrail'},
+  {text: 'Cognito', value:'Cognito'},
+  {text: 'DynamoDB', value:'DynamoDB'},
+  {text: 'History', value: 'History'},
 ];
 export const DJANGO_URL = 'http://localhost:8000/';
 export const LOGIN_ERROR_MESSAGE = 'INCORRECT USERNAME OR PASSWORD';

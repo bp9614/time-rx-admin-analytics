@@ -1,11 +1,11 @@
 import React from 'react';
-import { Dropdown, Form, Radio } from 'semantic-ui-react'
+import { Form, Radio } from 'semantic-ui-react'
 
 export default (field) => {
   return (
     <div>
       <Form.Field>
-        {field.label}
+        {field.title}
       </Form.Field>
       <Form.Field>
         <Radio {...field.input}

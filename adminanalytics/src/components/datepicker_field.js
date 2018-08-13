@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import moment from 'moment';
 import React from 'react';
 import DatePicker from 'react-datepicker';
@@ -13,6 +14,7 @@ export default (field) => {
       <label>{field.label}</label><br/>
       <DatePicker
           {...field.input}
+          dateForm="MM/DD/YYYY"
           selected={field.input.value ? moment(field.input.value) : null}/>
       <p className="error-msg">{errorMessage}</p>
     </div>

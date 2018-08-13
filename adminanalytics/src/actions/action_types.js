@@ -1,10 +1,13 @@
 export const AUTHENTICATED = 'AUTHENTICATED';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const EMPTY_RESPONSE = 'EMPTY_RESPONSE';
 export const GET_USERNAME = 'GET_USERNAME';
 export const LOADING = 'LOADING';
 export const LOGOUT = 'LOGOUT';
 export const FETCH_JWT_SUCCESS = 'FETCH_JWT_SUCCESS';
 export const FETCH_JWT_FAILURE = 'FETCH_JWT_FAILURE';
+export const HAS_CHART = 'HAS_CHART';
+export const HAS_HISTORY = 'HAS_HISTORY';
 export const REFRESH_JWT_SUCCESS = 'REFRESH_JWT_SUCCESS';
 export const REFRESH_JWT_FAILURE = 'REFRESH_JWT_FAILURE';
 export const SHOW_MODAL = 'SHOW_MODAL';

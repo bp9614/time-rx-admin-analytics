@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Dropdown } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 
 export default (field) => {
   const warningLabel =
@@ -15,6 +15,7 @@ export default (field) => {
           onChange={(param, data) => field.input.onChange(data.value)}
           id={field.id} 
           options={field.options}/>
+      <p className="error-msg">{errorMessage}</p>
     </div>
   )
 }

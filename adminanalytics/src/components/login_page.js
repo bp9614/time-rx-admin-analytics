@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
-import { fetchJWT, closeModal } from '../actions/index';
+import IncorrectPasswordModal from './incorrect_password_modal';
 import renderField from './render_field';
+import { fetchJWT, closeModal } from '../actions/index';
 import './login_page.css';
 
 const customStyles = {
@@ -67,21 +68,7 @@ class LoginPage extends Component {
             </div>
           </div>
         </div>
-        <Modal 
-            isOpen={this.props.showModal} 
-            onRequestClose={this.props.closeModal}
-            style={customStyles}>
-          <button 
-              onClick={this.props.closeModal} 
-              type="button" 
-              className="close right" 
-              aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <div className="fill vertical-centered error-msg">
-            <h1>{this.props.errorMsg}</h1>
-          </div>
-        </Modal>
+        <IncorrectPasswordModal/>
       </div>
     );
   }
